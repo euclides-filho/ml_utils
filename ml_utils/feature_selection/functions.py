@@ -1,4 +1,10 @@
 from __future__ import division, print_function
+__author__ = 'Euclides Fernandes Filho <euclides5414@gmail.com>'
+"""
+ml_utils
+Copyright (C) 2015  Euclides Fernandes Filho <euclides5414@gmail.com>
+http://www.gnu.org/licenses/gpl-2.0.html#SEC4
+"""
 from ml_utils.utils.logger import get_loggers
 
 logi, logd, logw, loge = get_loggers(__name__)
@@ -114,7 +120,6 @@ def greedy_forward(model, X, y, scoring, good_features=None, cv=4, use_std=False
         iter += 1
 
     # Remove last added feature from good_features
-    # TODO this is wrong
     best_score = score_hist[-1][0]
     if score_hist[-1][0] < score_hist[-2][0]:
         good_features.remove(score_hist[-1][1])
