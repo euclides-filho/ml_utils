@@ -12,7 +12,8 @@ logi, logd, logw, loge = get_loggers(__name__)
 import numpy as np
 import pandas as pd
 import traceback
-from sklearn.cross_validation import KFold, _BaseKFold
+from sklearn.model_selection import KFold
+from sklearn.model_selection._split import _BaseKFold
 from sklearn.metrics.scorer import _BaseScorer
 
 try:
@@ -37,12 +38,12 @@ def mp_aux(p):
 
         if isinstance(cv, (int, float)):
             cv_splitter = y
-            skf = KFold(len(cv_splitter), n_folds=cv, shuffle=False)
+            skf = KFold(len(cv_splitter), n_splits=cv, shuffle=False)
             n_folds = cv
         else:
             assert isinstance(cv, _BaseKFold), type(cv)
             skf = cv
-            n_folds = skf.n_folds
+            n_folds = skf.n_splits
         cv_scores = np.zeros((n_folds,), dtype=np.float64)
 
         for iCV, (train_index, test_index) in enumerate(skf):

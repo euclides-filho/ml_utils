@@ -17,9 +17,11 @@ from ml_utils.ensemble import KFoldEnsemble
 SEED = 17
 np.random.seed(SEED)
 
+
 def test():
     _regression()
     _feature_selection()
+
 
 def _regression():
     X = np.random.rand(1000, 50)

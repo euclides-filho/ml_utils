@@ -15,6 +15,7 @@ import sklearn
 import sklearn.base
 import multiprocessing
 import ml_utils.utils as u
+from sklearn.model_selection import StratifiedKFold, KFold
 SEED = 17
 
 
@@ -187,7 +188,7 @@ class KFoldPred(KFoldPredBase):
         self.y = y
         self.n_folds = n_folds
         self.shuffle = shuffle
-        self.folder = sklearn.cross_validation.KFold(n=self.X.shape[0], n_folds=self.n_folds, indices=None,
+        self.folder = KFold(n_splits=self.n_folds,
                                                      shuffle=self.shuffle, random_state=random_state)
 
         KFoldPredBase.__init__(self, model=model, scoring=scoring, random_state=random_state,
@@ -204,7 +205,7 @@ class KStratifiedPred(KFoldPredBase):
         self.shuffle = shuffle
         self.random_state = random_state
 
-        self.folder = sklearn.cross_validation.StratifiedKFold(y=self.y, n_folds=self.n_folds, indices=None,
+        self.folder = StratifiedKFold(y=self.y, n_folds=self.n_folds, indices=None,
                                                                shuffle=self.shuffle, random_state=random_state)
 
         KFoldPredBase.__init__(self, model=model, scoring=scoring, random_state=random_state,

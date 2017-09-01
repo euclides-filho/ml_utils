@@ -38,7 +38,7 @@ class LabelEncoderThreshold:
         dfg = df[[col_name]].copy()
         dfg["count"] = 1
         df_counts = dfg.groupby(col_name).count()
-        df_counts = df_counts.sort(["count"], ascending=[0])
+        df_counts = df_counts.sort_values(by=["count"], ascending=[0])
         categories = {}
 
         cur_idx = 0

@@ -9,6 +9,7 @@ http://www.gnu.org/licenses/gpl-2.0.html#SEC4
 import xgboost as xgbb
 from sklearn.base import BaseEstimator
 
+
 class XGBoostBase(BaseEstimator):
     def __init__(self, num_rounds=100, objective="reg:linear", eta=0.05, min_child_weight=5, subsample=0.8,
                  colsample_bytree=0.8, scale_pos_weight=1.0, silent=True, max_depth=7, max_delta_step=2,
@@ -81,7 +82,7 @@ class XGBoostBase(BaseEstimator):
         return params
 
     def set_params(self, **params):
-        for k, v in params.iteritems():
+        for k, v in params.items():
             setattr(self, k, v)
 
     def fit(self, X, y):
